@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layout/layout.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Index Page </title>
+</head>
+<body>
+<div layout:fragment="page-content" >
+   <div class="row">
+        <div class="col-xl-8">
+          <!--pie chart -->
+   <div  style="height: 400px">
+     <div class="card bg-default" id="container"></div>
+   </div>
+	<script th:inline="javascript">
+		Highcharts.chart('container', {
+			chart : {
+				type : 'pie',
+				options3d : {
+					enabled : true,
+					alpha : 50,
+					beta : 0
+				}
+			},
+			title : {
+				text : 'Gender Percentage'
+			},
+			tooltip : {
+				pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions : {
+				pie : {
+					allowPointSelect : true,
+					cursor : 'pointer',
+					depth : 35,
+					dataLabels : {
+						enabled : true,
+						format : '{point.name}'
+					}
+				}
+			},
+			series : [ {
+				type : 'pie',
+				name : 'Ratio',
+				data : [ [ 'Female', /*[[${female}]]*/ ], [ 'Male', /*[[${male}]]*/ ]  ]
+			} ]
+		});
+	</script>
+          <!-- end pie chart-->
+        </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Absences</h6>
+                  <h5 class="h3 mb-0">Total Absences</h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <canvas id="chart-bars" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="col-xl-4">
+         
+        </div>
+     
+     
+
+</div>
+
+
+
+</body>
+</html>
